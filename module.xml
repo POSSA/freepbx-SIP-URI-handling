@@ -1,0 +1,29 @@
+<module>
+	<rawname>urihand</rawname>
+	<name>SIP URI Handling</name>
+	<version>1.0.0</version>
+	<candisable>no</candisable>
+	<canuninstall>yes</canuninstall>
+	<type>setup</type>
+	<publisher>projects.colsolgrp.net</publisher>
+	<license>GPLv2+</license>
+	<category>Third Party Addon</category>
+       <description>
+                Provides SIP URI Dialing and Managment ui from your PBX. 
+        </description>
+	<info>http://projects.colsolgrp.net/projects/urihand</info>
+	 <changelog>
+		*0.0.1* First Module framework   (tshif)  12-24-10
+        </changelog>
+	<menuitems>
+		<urihand>SIP URI Handling</urihand>
+       </menuitems>
+	<depends>
+                <module>core</module>
+                <version>ge2.2</version>
+                <engine>asterisk 1.2</engine>
+         </depends>
+		 <info>http://projects.colsolgrp.net/projects/urihand/wiki</info>
+	<location>http://projects.colsolgrp.net/projects/urihand/files</location>
+	
+</module>
