@@ -1,5 +1,5 @@
 <?php
-function hotelwakeup_get_config($engine) {
+function urihand_get_config($engine) {
 	$modulename = 'urihand';
 	
 	// This generates the dialplan
@@ -85,5 +85,3 @@ function urihand_getconfig() {
 	$results[0][] = trim($res[0]);
 	return $results[0];
 }
-?>
-

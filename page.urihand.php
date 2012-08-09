@@ -1,13 +1,11 @@
 <?php
-// SIP URI Handling for FreePBX by 
-// FreePBX Module work by T. SHiffer 12/24/2010
-//
+
 if(count($_POST)){
 	urihand_saveconfig();
 }
 $date = urihand_getconfig();
 
-$module_info = xml2array("modules/urihand/module.xml");
+
 ?>
 <large><b>SIP URI Handling </large></b>
 <hr>
@@ -36,7 +34,4 @@ To enable a user to make SIP URI based outgoing calls from their extention, sele
 	</table>
 <br><br>
 <center><input type="button" value="Update" name="update"></center>
-<?php
-print '<p align="center" style="font-size:11px;">This module was created by Luke Hamburg.<br>
-The module is maintained by the developer community at <a target="_blank" href="http://projects.colsolgrp.net/projects/show/urihand"> CSG Software Project Management</a><br><strong>Module version '.$module_info['module']['version'].'</strong></p>';
-?>
+This module was created by Luke Hamburg.<br>
