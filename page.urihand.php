@@ -6,12 +6,17 @@ if(count($_POST)){
 $date = urihand_getconfig();
 
 
+// test for presence of custom contexts module
+if ($active_modules[customcontexts] ){
+	$ccmodule = '<b>WARNING:</b> The Custom Contexts Module is enabled on this system, and may be incompatible with this module.<br><br>';
+	}
+
 ?>
 <large><b>SIP URI Handling </large></b>
 <hr>
 This module adds the ability to dial SIP URI's from this PBX.<br>
 To enable a user to make SIP URI based outgoing calls from their extention, select it from the list.<br><br>
-
+<?php  print $ccmodule; ?>
 <form method="POST" action="">
 <large><bold><u>Administrator Functions</u></large></bold><br>
 <small>Establish the configurtion items below to enable SIP URI Dialing on this platform.</small><br><br>

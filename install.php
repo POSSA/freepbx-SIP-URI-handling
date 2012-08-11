@@ -19,7 +19,7 @@ if (DB::IsError($check)) {
 $filename = '/etc/asterisk/extensions_custom.conf';
 $includecontent = "#include custom_sipuri.conf\n";
 
-// Stock function for file edits
+// misc function replace text in a file
 function replace_file($path, $string, $replace)
 {
     set_time_limit(0);
@@ -66,12 +66,16 @@ if (is_writable($filename)) {
 ?>Verifying / Setting srvlookup=yes in sip.conf.<br>
 <?
 
-// need to add a check here for srvlookup - not sure how to do this at present
+// determine status of srvlookup and set to yes if necessary
+$sip_settings = sipsettings_get();
+if ($sip_settings['srvlookup'] != 'yes')  {
+	$sip_settings['srvlookup'] = 'yes';
+	sipsettings_edit($sip_settings);
+	}
 
 ?>Installing Default Values<br>
 <?
-# the easy why to debug your SQL Q its missing a value or something do let me do this :P
-# is  that telling yo how yur puting it upp you dont need to have them in a serten order as long as the value ar in teh same place
+
 $sql ="INSERT INTO urihand (parm1, parm2) ";
 $sql .= "VALUES ('3','60')";
 
@@ -80,12 +84,11 @@ if (DB::IsError($check)) {
         die_freepbx( "Can not create default values in `urihand` table: " . $check->getMessage() .  "\n");
 }
 
+?>Set Defaults for Global Variables<br>
+<?
 
-// Register FeatureCode - SIP URI Handling;
-//$fcc = new featurecode('urihand', 'urihand');
-//$fcc->setDescription('SIP URI Handling');
-//$fcc->setDefault('*874');
-//$fcc->update();
-//unset($fcc);
-//needreload();
+urihand_saveglobalvar('yourdomain.com', 'URI_DOMAIN');
+urihand_saveglobalvar('pbx.yourdomain.com', 'URI_FQDN1');
+urihand_saveglobalvar('pbx.local', 'URI_FQDN2');
+
 ?>
