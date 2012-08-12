@@ -1,7 +1,7 @@
 <module>
 	<rawname>urihand</rawname>
-	<name>SIP URI Handling</name>
-	<version>0.0.1</version>
+	<name>URI Handling</name>
+	<version>0.0.2</version>
 	<canuninstall>yes</canuninstall>
 	<candisable>no</candisable>
 	<type>setup</type>
@@ -13,17 +13,16 @@
         </description>
 	<info>POSSA Website</info>
 	 <changelog>
-		*0.0.1* First Module framework   (tshif)  12-24-10
+		*0.0.2* Moved to POSSA, first testing release         08-12-2012
+		*0.0.1* Non-working First Module framework   (tshif)  12-24-2010
         </changelog>
 	<menuitems>
-		<urihand>SIP URI Handling</urihand>
-       </menuitems>
+		<urihand>URI Handling</urihand>
+	</menuitems>
 	<depends>
-                <module>core</module>
-                <version>ge2.2</version>
-                <engine>asterisk 1.2</engine>
-         </depends>
+		<version>ge 2.9</version>
+		<engine>asterisk 1.2</engine>
+	</depends>
 		 <info>POSSA Wiki</info>
 	<location>POSSA Website</location>
-	
 </module>

@@ -1,6 +1,6 @@
 <?php
 
-// not sure this function is necessary, does it run automatically?
+// not sure this function is necessary, it is not referenced in the module, does it run automatically?
 function urihand_get_config($engine) {
 	$modulename = 'urihand';
 	
@@ -32,7 +32,7 @@ function urihand_get_config($engine) {
 
 function urihand_editconfig($post) {
 	global $db;
-	$id = $post['id'];    // always will be 1 to ensure only a single record in the table
+	$id = 1;    // always will be 1 to ensure only a single record in the table
 	$name1 = $db->escapeSimple($post['name1']);
 	$name2 = $db->escapeSimple($post['name2']);
 	$name3 = $db->escapeSimple($post['name3']);

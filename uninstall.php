@@ -1,10 +1,31 @@
-SIP URI Handling is being uninstalled.<br>
 <?php
-?>Removing custom_sipuri.conf reference from extensions_custom.conf.<br>
-<?
+if (!defined('FREEPBX_IS_AUTH')) { die('No direct script access allowed'); }
+//This file is part of FreePBX.
+//
+//    This is free software: you can redistribute it and/or modify
+//    it under the terms of the GNU General Public License as published by
+//    the Free Software Foundation, either version 2 of the License, or
+//    (at your option) any later version.
+//
+//    This module is distributed in the hope that it will be useful,
+//    but WITHOUT ANY WARRANTY; without even the implied warranty of
+//    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//    GNU General Public License for more details.
+//
+//    see <http://www.gnu.org/licenses/>.
+//
 
-// dialplan include to asterisk conf file
-$filename = '/etc/asterisk/extensions_custom.conf';
+// Module dev notes:
+// module uninstalls with global variables still set - maybe a bit sloppy but should not cause any issues 
+// module sets srvlookup to yes on install and remains set to yes on uninstall
+
+
+?>URI Handling Module is being uninstalled.<br>
+Removing custom_sipuri.conf reference from extensions_custom.conf.<br>
+<?php
+
+// remove dialplan include from asterisk conf file
+$filename = $amp_conf[ASTETCDIR].'/extension_custom.conf';
 $includecontent = "#include custom_sipuri.conf\n";
 
 // Stock function for file edits
@@ -33,7 +54,7 @@ replace_file($filename, $includecontent, '');
 
 
 ?>Removing Table urihand.<br>
-<?
+<?php
 // drop the tables
 $sql = "DROP TABLE IF EXISTS urihand";
 $check = $db->query($sql);
@@ -41,5 +62,4 @@ if (DB::IsError($check)) {
         die_freepbx( "Can not delete `urihand` table: " . $check->getMessage() .  "\n");
 }
 
-// module uninstalls with global variables still set - maybe a bit sloppy but should not cause any issues 
 ?>

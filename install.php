@@ -1,7 +1,5 @@
-Installing SIP URI Handling.<br>
 <?php
-
-//if (!defined('FREEPBX_IS_AUTH')) { die('No direct script access allowed'); }
+if (!defined('FREEPBX_IS_AUTH')) { die('No direct script access allowed'); }
 //This file is part of FreePBX.
 //
 //    This is free software: you can redistribute it and/or modify
@@ -17,23 +15,41 @@ Installing SIP URI Handling.<br>
 //    see <http://www.gnu.org/licenses/>.
 //
 
+// Module dev notes:
+// not storing the pre-install value for srvlookup anywhere, wonder if we should so can restore when module is uninstalled
+
+
+?>Installing URI Handling Module.<br>
+Creating urihand Table.<br>
+<?php
 global $db;
 global $amp_conf;
 
-// create the module config table id will always =1 
+// create the module config table id will always = 1 
 $sql = "CREATE TABLE IF NOT EXISTS urihand (
-	id tinyint(1),
+	id tinyint(1) PRIMARY KEY,
 	name1 VARCHAR(100),
 	name2 VARCHAR(100),
-	name3 VARCHAR(100)
+	name3 VARCHAR(100) 
 	);";
 $check = $db->query($sql);
 if (DB::IsError($check)) {
         die_freepbx( "Can not create `urihand` table: " . $check->getMessage() .  "\n");
 }
 
+//  if table is empty set default values
+$sql = "SELECT * FROM urihand Where id = 1";
+$results = sql($sql,"getAll",DB_FETCHMODE_ASSOC);
+if	($results[0]['id'] != 1)  {
+	Print "Installing default values.<br>";
+	$results = sql("
+		REPLACE INTO urihand (id,            name1,                name2,       name3)
+		             VALUES ('1', 'yourdomain.com', 'pbx.yourdomain.com', 'pbx.local')
+		");
+	}
+
 ?>Verifying / Inserting custom_sipuri.conf reference in extensions_custom.conf.<br>
-<?
+<?php
 // define dialplan include and path to asterisk conf file
 $filename = $amp_conf[ASTETCDIR].'/extension_custom.conf';
 $includecontent = "#include custom_sipuri.conf\n";
@@ -83,7 +99,7 @@ if (is_writable($filename)) {
 }
 
 ?>Verifying / Setting srvlookup=yes in sip.conf.<br>
-<?
+<?php
 
 // determine status of srvlookup and set to yes if necessary
 $sip_settings = sipsettings_get();

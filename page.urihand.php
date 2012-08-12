@@ -1,20 +1,33 @@
 <?php
+if (!defined('FREEPBX_IS_AUTH')) { die('No direct script access allowed'); }
+//This file is part of FreePBX.
+//
+//    This is free software: you can redistribute it and/or modify
+//    it under the terms of the GNU General Public License as published by
+//    the Free Software Foundation, either version 2 of the License, or
+//    (at your option) any later version.
+//
+//    This module is distributed in the hope that it will be useful,
+//    but WITHOUT ANY WARRANTY; without even the implied warranty of
+//    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//    GNU General Public License for more details.
+//
+//    see <http://www.gnu.org/licenses/>.
+//
 
+// Module dev notes:
+// 
+
+print_r ("--".$_POST."--");
 if(count($_POST)){
-	urihand_saveconfig();
+	urihand_editconfig($_POST);
 }
+
+// get module config 
 $date = urihand_getconfig();
-
-
-// check to see if id is already defined and if not insert default values not setting global vars with these default values.
-if ($date['id'] != 1)  {
-	$sql ="INSERT INTO urihand ( id,            name1,                name2,      name3   ) ";
-	$sql .= "VALUES            ('1', 'yourdomain.com', 'pbx.yourdomain.com', 'pbx.local'  )";
-	$check = $db->query($sql);
-	if (DB::IsError($check)) {
-        die_freepbx( "Can not create default values in `urihand` table: " . $check->getMessage() .  "\n");
-		}
-	}
+$name1 = $date[0]['name1'];
+$name2 = $date[0]['name2'];
+$name3 = $date[0]['name3'];
 
 // test for presence of custom contexts module
 if ($active_modules[customcontexts] ){
@@ -22,8 +35,9 @@ if ($active_modules[customcontexts] ){
 	}
 
 ?>
-<large><b>SIP URI Handling </large></b>
-<hr>
+<h1><font face="Arial">URI Handling Module</font></h1>
+		<hr>
+
 This module adds the ability to dial SIP URI's from this PBX.<br>
 To enable a user to make SIP URI based outgoing calls from their extention, select it from the list.<br><br>
 <?php  print $ccmodule; ?>
@@ -35,18 +49,20 @@ To enable a user to make SIP URI based outgoing calls from their extention, sele
 	<table border="0" width="32%" id="table1">
 		<tr>
 			<td width="115">MYDOMAIN</td>
-			<td><input type="text" name="domain" size="27" value="yourdomain.com"></td>
+			<td><input type="text" name="name1" size="27" value="$name1"></td>
 		</tr>
 		<tr>
 			<td width="115">MYFQDN1</td>
 			<td>
-			<input type="text" name="fqdn1" size="27" value="pbx.yourdomain.com"></td>
+			<input type="text" name="name2" size="27" value="$name2"></td>
 		</tr>
 		<tr>
 			<td width="115">MYFQDN2</td>
-			<td><input type="text" name="fqdn2" size="27" value="pbx.local"></td>
+			<td><input type="text" name="name3" size="27" value="$name3"></td>
 		</tr>
 	</table>
-<br><br>
-<center><input type="button" value="Update" name="update"></center>
-This module was created by Luke Hamburg.<br>
+<br>
+<input type="button" value="Update" name="update">
+<br><hr><br>
+<center>This module was started by the community at colsolgrp based on scripts originally created by Luke Hamburg.<br>
+This module is now maintained by the PBX Open Source Software Alliance (POSSA)<br><br></center>
