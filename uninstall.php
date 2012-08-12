@@ -31,6 +31,7 @@ function replace_file($path, $string, $replace)
 // look for existing occurances of the include line and remove them
 replace_file($filename, $includecontent, '');
 
+
 ?>Removing Table urihand.<br>
 <?
 // drop the tables
@@ -39,5 +40,6 @@ $check = $db->query($sql);
 if (DB::IsError($check)) {
         die_freepbx( "Can not delete `urihand` table: " . $check->getMessage() .  "\n");
 }
-//needreload();
+
+// module uninstalls with global variables still set - maybe a bit sloppy but should not cause any issues 
 ?>

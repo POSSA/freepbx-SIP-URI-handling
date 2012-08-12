@@ -1,22 +1,41 @@
 Installing SIP URI Handling.<br>
 <?php
+
+//if (!defined('FREEPBX_IS_AUTH')) { die('No direct script access allowed'); }
+//This file is part of FreePBX.
+//
+//    This is free software: you can redistribute it and/or modify
+//    it under the terms of the GNU General Public License as published by
+//    the Free Software Foundation, either version 2 of the License, or
+//    (at your option) any later version.
+//
+//    This module is distributed in the hope that it will be useful,
+//    but WITHOUT ANY WARRANTY; without even the implied warranty of
+//    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//    GNU General Public License for more details.
+//
+//    see <http://www.gnu.org/licenses/>.
+//
+
 global $db;
 global $amp_conf;
 
-// create the tables
+// create the module config table id will always =1 
 $sql = "CREATE TABLE IF NOT EXISTS urihand (
-	parm1 VARCHAR(5),
-	parm2 VARCHAR(5)
-);";
-
+	id tinyint(1),
+	name1 VARCHAR(100),
+	name2 VARCHAR(100),
+	name3 VARCHAR(100)
+	);";
 $check = $db->query($sql);
 if (DB::IsError($check)) {
         die_freepbx( "Can not create `urihand` table: " . $check->getMessage() .  "\n");
 }
+
 ?>Verifying / Inserting custom_sipuri.conf reference in extensions_custom.conf.<br>
 <?
-// Add dialplan include to asterisk conf file
-$filename = '/etc/asterisk/extensions_custom.conf';
+// define dialplan include and path to asterisk conf file
+$filename = $amp_conf[ASTETCDIR].'/extension_custom.conf';
 $includecontent = "#include custom_sipuri.conf\n";
 
 // misc function replace text in a file
@@ -72,23 +91,5 @@ if ($sip_settings['srvlookup'] != 'yes')  {
 	$sip_settings['srvlookup'] = 'yes';
 	sipsettings_edit($sip_settings);
 	}
-
-?>Installing Default Values<br>
-<?
-
-$sql ="INSERT INTO urihand (parm1, parm2) ";
-$sql .= "VALUES ('3','60')";
-
-$check = $db->query($sql);
-if (DB::IsError($check)) {
-        die_freepbx( "Can not create default values in `urihand` table: " . $check->getMessage() .  "\n");
-}
-
-?>Set Defaults for Global Variables<br>
-<?
-
-urihand_saveglobalvar('yourdomain.com', 'URI_DOMAIN');
-urihand_saveglobalvar('pbx.yourdomain.com', 'URI_FQDN1');
-urihand_saveglobalvar('pbx.local', 'URI_FQDN2');
 
 ?>

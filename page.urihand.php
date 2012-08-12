@@ -6,6 +6,16 @@ if(count($_POST)){
 $date = urihand_getconfig();
 
 
+// check to see if id is already defined and if not insert default values not setting global vars with these default values.
+if ($date['id'] != 1)  {
+	$sql ="INSERT INTO urihand ( id,            name1,                name2,      name3   ) ";
+	$sql .= "VALUES            ('1', 'yourdomain.com', 'pbx.yourdomain.com', 'pbx.local'  )";
+	$check = $db->query($sql);
+	if (DB::IsError($check)) {
+        die_freepbx( "Can not create default values in `urihand` table: " . $check->getMessage() .  "\n");
+		}
+	}
+
 // test for presence of custom contexts module
 if ($active_modules[customcontexts] ){
 	$ccmodule = '<b>WARNING:</b> The Custom Contexts Module is enabled on this system, and may be incompatible with this module.<br><br>';

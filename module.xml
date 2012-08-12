@@ -2,8 +2,8 @@
 	<rawname>urihand</rawname>
 	<name>SIP URI Handling</name>
 	<version>0.0.1</version>
-	<candisable>no</candisable>
 	<canuninstall>yes</canuninstall>
+	<candisable>no</candisable>
 	<type>setup</type>
 	<publisher>POSSA</publisher>
 	<license>GPLv2+</license>
