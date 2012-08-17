@@ -18,16 +18,19 @@ if (!defined('FREEPBX_IS_AUTH')) { die('No direct script access allowed'); }
 // Module dev notes:
 // 
 
-print_r ("--".$_POST."--");
 if(count($_POST)){
-	urihand_editconfig($_POST);
-}
+
+	$foo = array(
+		name1 => $_POST['name1'],
+		name2 => $_POST['name2'],
+		name3 => $_POST['name3']
+		);
+
+	urihand_editconfig($foo);
+	}
 
 // get module config 
 $date = urihand_getconfig();
-$name1 = $date[0]['name1'];
-$name2 = $date[0]['name2'];
-$name3 = $date[0]['name3'];
 
 // test for presence of custom contexts module
 if ($active_modules[customcontexts] ){
@@ -41,7 +44,7 @@ if ($active_modules[customcontexts] ){
 This module adds the ability to dial SIP URI's from this PBX.<br>
 To enable a user to make SIP URI based outgoing calls from their extention, select it from the list.<br><br>
 <?php  print $ccmodule; ?>
-<form method="POST" action="">
+<form name= "config" method="POST" action=""><a href="javascript: return false;" class="info">
 <large><bold><u>Administrator Functions</u></large></bold><br>
 <small>Establish the configurtion items below to enable SIP URI Dialing on this platform.</small><br><br>
 <medium><bold>Identity</medium></bold><br><small><hr></small>
@@ -49,20 +52,20 @@ To enable a user to make SIP URI based outgoing calls from their extention, sele
 	<table border="0" width="32%" id="table1">
 		<tr>
 			<td width="115">MYDOMAIN</td>
-			<td><input type="text" name="name1" size="27" value="$name1"></td>
+			<td><input type="text" name="name1" size="27" value="<?php print $date[0]['name1']; ?>"><a href="javascript: return false;" class="info"></td>
 		</tr>
 		<tr>
 			<td width="115">MYFQDN1</td>
 			<td>
-			<input type="text" name="name2" size="27" value="$name2"></td>
+			<input type="text" name="name2" size="27" value="<?php print $date[0]['name2']; ?>"><a href="javascript: return false;" class="info"></td>			
 		</tr>
 		<tr>
 			<td width="115">MYFQDN2</td>
-			<td><input type="text" name="name3" size="27" value="$name3"></td>
+			<td><input type="text" name="name3" size="27" value="<?php print $date[0]['name3']; ?>"><a href="javascript: return false;" class="info"></td>
 		</tr>
 	</table>
 <br>
-<input type="button" value="Update" name="update">
+<input type="submit" value="update" name="update">
 <br><hr><br>
 <center>This module was started by the community at colsolgrp based on scripts originally created by Luke Hamburg.<br>
 This module is now maintained by the PBX Open Source Software Alliance (POSSA)<br><br></center>

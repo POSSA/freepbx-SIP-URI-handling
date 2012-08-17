@@ -30,12 +30,15 @@ function urihand_get_config($engine) {
 }
 
 
-function urihand_editconfig($post) {
+function urihand_editconfig($foo) {
 	global $db;
 	$id = 1;    // always will be 1 to ensure only a single record in the table
-	$name1 = $db->escapeSimple($post['name1']);
-	$name2 = $db->escapeSimple($post['name2']);
-	$name3 = $db->escapeSimple($post['name3']);
+	$name1 = $db->escapeSimple($foo['name1']);
+	$name2 = $db->escapeSimple($foo['name2']);
+	$name3 = $db->escapeSimple($foo['name3']);
+print $name1;
+print $name2;
+print $name3;
 
 	$results = sql("
 		UPDATE urihand 
@@ -44,13 +47,14 @@ function urihand_editconfig($post) {
 			name2 = '$name2', 
 			name3 = '$name3'			
 		WHERE id = '1'");
-
+/*  following lines not working
 	// now define global variables with the name vars
 	urihand_saveglobalvar($name1, 'URI_NAME1');
 	urihand_saveglobalvar($name2, 'URI_NAME2');
 	urihand_saveglobalvar($name3, 'URI_NAME3');
-	needreload ();
-		
+// check syntax for next line	
+//	needreload ();  
+*/		
 	}
 
 function urihand_saveglobalvar($value, $variable)  {
