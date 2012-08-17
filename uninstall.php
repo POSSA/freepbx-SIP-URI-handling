@@ -25,8 +25,8 @@ Removing custom_sipuri.conf reference from extensions_custom.conf.<br>
 <?php
 
 // remove dialplan include from asterisk conf file
-$filename = $amp_conf[ASTETCDIR].'/extension_custom.conf';
-$includecontent = "#include custom_sipuri.conf\n";
+$filename = $amp_conf[ASTETCDIR].'/extensions_custom.conf';
+$includecontent = "#include custom_sipuri.conf";
 
 // Stock function for file edits
 function replace_file($path, $string, $replace)

@@ -15,9 +15,6 @@ if (!defined('FREEPBX_IS_AUTH')) { die('No direct script access allowed'); }
 //    see <http://www.gnu.org/licenses/>.
 //
 
-// Module dev notes:
-// 
-
 if(count($_POST)){
 
 	$foo = array(
@@ -41,14 +38,13 @@ if ($active_modules[customcontexts] ){
 <h1><font face="Arial">URI Handling Module</font></h1>
 		<hr>
 
-This module adds the ability to dial SIP URI's from this PBX.<br>
-To enable a user to make SIP URI based outgoing calls from their extention, select it from the list.<br><br>
+This module adds the ability to dial SIP URI's from this PBX.<br><br>
 <?php  print $ccmodule; ?>
 <form name= "config" method="POST" action=""><a href="javascript: return false;" class="info">
-<large><bold><u>Administrator Functions</u></large></bold><br>
-<small>Establish the configurtion items below to enable SIP URI Dialing on this platform.</small><br><br>
-<medium><bold>Identity</medium></bold><br><small><hr></small>
-<small>Replace the examples with your real information. Use whatever you're using for externhost= or your real domain, etc.</small>
+
+Establish the configurtion items below to enable SIP URI Dialing on this platform.<br><br>
+<br><hr>
+The following three fields are used to set LAN/WAN IP addresses or FQDN names for LAN/WAN of the PBX.  Any dialed URIs with these domains will be routed locally.
 	<table border="0" width="32%" id="table1">
 		<tr>
 			<td width="115">MYDOMAIN</td>
@@ -66,6 +62,30 @@ To enable a user to make SIP URI based outgoing calls from their extention, sele
 	</table>
 <br>
 <input type="submit" value="update" name="update">
-<br><hr><br>
-<center>This module was started by the community at colsolgrp based on scripts originally created by Luke Hamburg.<br>
+<br><hr>
+<?php
+echo "<br><h2><b>Configured Extensions:</b></h2>\n";
+echo "For extensions to dial a SIP URI, they must be manually set to a context of 'enable-sipuri-dialing' (without quotes).  The following table lists the system extensions that are using that context.<br>";
+echo "<TABLE cellSpacing=1 cellPadding=1 width=900 border=1 >\n" ;
+echo "<TD>Ext#</TD><TD>Description</TD><TD>Context</TD></TR>\n" ;
+
+
+$list = core_devices_list(); //returns 2d array of system devices
+$listcount = count($list);
+$count = 0;
+while ($count < $listcount) {
+
+	$device = core_devices_get($list[$count]['id']);
+//	print $device['id']."--".$count."---".$device['context']."---<br>";
+	If ($device['context'] == "enable-sipuri-dialing")
+	{
+		echo "<TR><TD><FONT face=verdana,sans-serif>" . $device['id'] . "</TD><TD>".$device['description']."</TD><TD>" .$device['context'] ."</TD>\n";
+
+	}
+	$count++;
+	}
+		
+echo "</TABLE></FORM>\n";
+?>
+<br><hr><br><center>This module was started by the community at colsolgrp based on scripts originally created by Luke Hamburg.<br>
 This module is now maintained by the PBX Open Source Software Alliance (POSSA)<br><br></center>

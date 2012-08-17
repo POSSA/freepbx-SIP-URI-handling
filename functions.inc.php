@@ -36,9 +36,6 @@ function urihand_editconfig($foo) {
 	$name1 = $db->escapeSimple($foo['name1']);
 	$name2 = $db->escapeSimple($foo['name2']);
 	$name3 = $db->escapeSimple($foo['name3']);
-print $name1;
-print $name2;
-print $name3;
 
 	$results = sql("
 		UPDATE urihand 
@@ -47,27 +44,26 @@ print $name3;
 			name2 = '$name2', 
 			name3 = '$name3'			
 		WHERE id = '1'");
-/*  following lines not working
-	// now define global variables with the name vars
+
+	// now define global variables with the name vars and force reload
 	urihand_saveglobalvar($name1, 'URI_NAME1');
 	urihand_saveglobalvar($name2, 'URI_NAME2');
 	urihand_saveglobalvar($name3, 'URI_NAME3');
-// check syntax for next line	
-//	needreload ();  
-*/		
+	needreload ();  
+		
 	}
 
 function urihand_saveglobalvar($value, $variable)  {
-	$sql ="REPLACE INTO globals (value,variable) VALUES ($value, $variable) ";
-	$check = $db->query($sql);
-	if (DB::IsError($check)) {
-		die_freepbx( "Can not set global variable $variable" . $check->getMessage() .  "\n");
-		}
+	$check = sql("REPLACE INTO globals (value,variable) VALUES ('$value', '$variable')");
 	}
-
 
 function urihand_getconfig() {
 	$sql = "SELECT * FROM urihand Where id = 1";
 	$results = sql($sql,"getAll",DB_FETCHMODE_ASSOC);
 	return is_array($results)?$results:array();
+	}
+
+function uri_getextensions() {
+	$list = core_devices_list(); //returns 2d array of system devices 
+	
 	}
