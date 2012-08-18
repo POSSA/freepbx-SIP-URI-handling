@@ -87,5 +87,5 @@ while ($count < $listcount) {
 		
 echo "</TABLE></FORM>\n";
 ?>
-<br><hr><br><center>This module was started by the community at colsolgrp based on scripts originally created by Luke Hamburg.<br>
-This module is now maintained by the PBX Open Source Software Alliance (POSSA)<br><br></center>
+<br><hr><br><small><center>Based on scripts originally created by Luke Hamburg, this module<br>
+is now maintained by the PBX Open Source Software Alliance (POSSA)<br><br></center></small>

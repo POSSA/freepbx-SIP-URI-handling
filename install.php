@@ -52,7 +52,7 @@ if	($results[0]['id'] != 1)  {
 <?php
 // define dialplan include and path to asterisk conf file
 $filename = $amp_conf[ASTETCDIR].'/extensions_custom.conf';   
-$includecontent = "#include custom_sipuri.conf\n";
+$includecontent = "#include custom_urihand.conf\n";
 
 // misc function replace text in a file
 function replace_file($path, $string, $replace)

@@ -9,11 +9,11 @@
 	<license>GPLv2+</license>
 	<category>Other</category>
        <description>
-                Provides SIP URI Dialing and Managment ui from your PBX. 
+                Provides SIP URI Dialing and Managment User Interface from your PBX. 
         </description>
 	<info>POSSA Website</info>
 	 <changelog>
-		*0.0.2* Moved to POSSA, first testing release         08-12-2012
+		*0.0.2* Moved to POSSA, first testing release         08-18-2012
 		*0.0.1* Non-working First Module framework   (tshif)  12-24-2010
         </changelog>
 	<menuitems>
@@ -21,7 +21,6 @@
 	</menuitems>
 	<depends>
 		<version>ge 2.9</version>
-		<engine>asterisk 1.2</engine>
 	</depends>
 		 <info>POSSA Wiki</info>
 	<location>POSSA Website</location>
