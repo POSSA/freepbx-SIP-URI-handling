@@ -22,6 +22,6 @@
 	<depends>
 		<version>ge 2.9</version>
 	</depends>
-		 <info>POSSA Wiki</info>
-	<location>POSSA Website</location>
+	<info>https://github.com/POSSA/freepbx-SIP-URI-handling/wiki</info>
+	<location>https://github.com/POSSA/freepbx-SIP-URI-handling</location>
 </module>

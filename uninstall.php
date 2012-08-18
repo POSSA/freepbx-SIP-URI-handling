@@ -21,7 +21,7 @@ if (!defined('FREEPBX_IS_AUTH')) { die('No direct script access allowed'); }
 
 
 ?>URI Handling Module is being uninstalled.<br>
-Removing custom_sipuri.conf reference from extensions_custom.conf.<br>
+Removing custom_urihand.conf reference from extensions_custom.conf.<br>
 <?php
 
 // remove dialplan include from asterisk conf file

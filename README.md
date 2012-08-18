@@ -1,8 +1,8 @@
-freepbx-SIP-URI-handling
-========================
+FreePBX URI Handling Module
+===========================
 
-THIS IS A NON-FUNCTIONING WORK IN PROGRESS
+SIP URI Handling for FreePBX is a module which add SIP URI Dialing to and FreePBX based distribution.  FreePBX extensions placing outbound calls in non-numeric SIP/URI format will fail, this module is an attempt to fix this limitation.
 
-SIP URI Handling for FreePBX is a module which add SIP URI Dialing to and FreePBX based distribution.
+This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.
 
-Module is released as GNU GPL2
+This module is currently maintained by the PBX Open Source Software Alliance (POSSA).
