@@ -15,6 +15,12 @@ if (!defined('FREEPBX_IS_AUTH')) { die('No direct script access allowed'); }
 //    see <http://www.gnu.org/licenses/>.
 //
 
+// check if new version of module is available
+if ($foo = urihand_vercheck()) {
+	print "<br>A <b>new version of this module is available</b> from the <a href='http://pbxossa.org'>PBX Open Source Software Alliance</a><br>";
+	}
+
+	
 if(count($_POST)){
 
 	$foo = array(

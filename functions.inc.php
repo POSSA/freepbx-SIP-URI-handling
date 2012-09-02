@@ -67,3 +67,17 @@ function uri_getextensions() {
 	$list = core_devices_list(); //returns 2d array of system devices 
 	
 	}
+// compare version numbers of local module.xml and remote module.xml 
+// returns true if a new version is available
+function urihand_vercheck() {
+	$newver = false;
+	if ( function_exists(xml2array)){
+		$module_local = xml2array("modules/urihand/module.xml");
+		$module_remote = xml2array("https://raw.github.com/POSSA/freepbx-SIP-URI-handling/master/module.xml");
+		if ( $module_remote[module][version] > $module_local[module][version])
+			{
+			$newver = true;
+			}
+		return ($newver);
+		}
+	}

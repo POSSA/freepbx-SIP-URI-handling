@@ -1,7 +1,7 @@
 <module>
 	<rawname>urihand</rawname>
 	<name>URI Handling</name>
-	<version>0.0.2</version>
+	<version>0.0.3</version>
 	<canuninstall>yes</canuninstall>
 	<candisable>no</candisable>
 	<type>setup</type>
