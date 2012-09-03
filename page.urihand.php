@@ -15,9 +15,14 @@ if (!defined('FREEPBX_IS_AUTH')) { die('No direct script access allowed'); }
 //    see <http://www.gnu.org/licenses/>.
 //
 
+
+// check to see if user has automatic updates enabled
+$cm =& cronmanager::create($db);
+$online_updates = $cm->updates_enabled() ? true : false;
+
 // check if new version of module is available
-if ($foo = urihand_vercheck()) {
-	print "<br>A <b>new version of this module is available</b> from the <a target='_blank' href='http://pbxossa.org'>PBX Open Source Software Alliance</a><br>";
+if ($online_updates && $foo = urihand_vercheck()) {
+	print "<br>A <b>new version</b> of this module is available from the <a target='_blank' href='http://pbxossa.org'>PBX Open Source Software Alliance</a><br>";
 	}
 
 	

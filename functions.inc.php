@@ -74,7 +74,11 @@ function urihand_vercheck() {
 	if ( function_exists(xml2array)){
 		$module_local = xml2array("modules/urihand/module.xml");
 		$module_remote = xml2array("https://raw.github.com/POSSA/freepbx-SIP-URI-handling/master/module.xml");
-		if ( $module_remote[module][version] > $module_local[module][version])
+		if ( $foo= empty($module_local) or $bar = empty($module_remote) )
+			{
+			//  if either array is empty skip version check
+			}
+		else if ( $module_remote[module][version] > $module_local[module][version])
 			{
 			$newver = true;
 			}
