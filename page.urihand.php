@@ -24,9 +24,9 @@ if ($foo = urihand_vercheck()) {
 if(count($_POST)){
 
 	$foo = array(
-		name1 => $_POST['name1'],
-		name2 => $_POST['name2'],
-		name3 => $_POST['name3']
+		'name1' => $_POST['name1'],
+		'name2' => $_POST['name2'],
+		'name3' => $_POST['name3']
 		);
 
 	urihand_editconfig($foo);
@@ -36,7 +36,7 @@ if(count($_POST)){
 $date = urihand_getconfig();
 
 // test for presence of custom contexts module
-if ($active_modules[customcontexts] ){
+if ($active_modules['customcontexts'] ){
 	$ccmodule = '<b>WARNING:</b> The Custom Contexts Module is enabled on this system, and may be incompatible with this module.<br><br>';
 	}
 
