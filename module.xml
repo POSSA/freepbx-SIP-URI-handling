@@ -1,7 +1,7 @@
 <module>
 	<rawname>urihand</rawname>
 	<name>URI Handling</name>
-	<version>0.0.3</version>
+	<version>0.0.4</version>
 	<canuninstall>yes</canuninstall>
 	<candisable>no</candisable>
 	<type>setup</type>
@@ -13,6 +13,7 @@
         </description>
 	<info>POSSA Website</info>
 	 <changelog>
+		*0.0.4* Fix for FreePBX 14+                           02-13-2022
 		*0.0.2* Moved to POSSA, first testing release         08-18-2012
 		*0.0.1* Non-working First Module framework   (tshif)  12-24-2010
         </changelog>
