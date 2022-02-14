@@ -71,7 +71,7 @@ function uri_getextensions() {
 // returns true if a new version is available
 function urihand_vercheck() {
 	$newver = false;
-	if ( function_exists(xml2array)){
+	if ( function_exists('xml2array')){
 		$module_local = xml2array("modules/urihand/module.xml");
 		$module_remote = xml2array("https://raw.github.com/POSSA/freepbx-SIP-URI-handling/master/module.xml");
 		if ( $module_remote[module][version] > $module_local[module][version])
