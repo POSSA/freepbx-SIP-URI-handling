@@ -25,7 +25,7 @@ Removing custom_urihand.conf reference from extensions_custom.conf.<br>
 <?php
 
 // remove dialplan include from asterisk conf file
-$filename = $amp_conf[ASTETCDIR].'/extensions_custom.conf';
+$filename = $amp_conf['ASTETCDIR'].'/extensions_custom.conf';
 $includecontent = "#include custom_urihand.conf";
 
 // Stock function for file edits

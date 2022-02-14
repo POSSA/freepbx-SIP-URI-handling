@@ -51,7 +51,7 @@ if	($results[0]['id'] != 1)  {
 ?>Verifying / Inserting custom_urihand.conf reference in extensions_custom.conf.<br>
 <?php
 // define dialplan include and path to asterisk conf file
-$filename = $amp_conf[ASTETCDIR].'/extensions_custom.conf';   
+$filename = $amp_conf['ASTETCDIR'].'/extensions_custom.conf';   
 $includecontent = "#include custom_urihand.conf\n";
 
 // misc function replace text in a file
